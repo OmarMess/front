@@ -13,7 +13,6 @@ import { MatInputModule } from '@angular/material/input';
 
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-
 @NgModule({
   imports: [
     MatInputModule,
