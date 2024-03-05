@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CandidatServiceService } from 'app/Services/candidat-service.service';
 import * as Chartist from 'chartist';
 
 @Component({
@@ -8,7 +9,9 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  
+
+  constructor(private candidatService: CandidatServiceService) { }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -65,9 +68,11 @@ export class DashboardComponent implements OnInit {
 
       seq2 = 0;
   };
+  fullstackCount : number=0;
   ngOnInit() {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
-
+      
+      
       const dataDailySalesChart: any = {
           labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
           series: [
@@ -145,6 +150,19 @@ export class DashboardComponent implements OnInit {
 
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
+
+      this.getCandidatesCountByProfile();
   }
 
-}
+  getCandidatesCountByProfile(): void {
+    this.candidatService.getCandidatesByProfile('FULLSTACKrez')
+      .subscribe(candidates => {
+        if (candidates) {
+          this.fullstackCount = candidates.length;
+        } else {
+          this.fullstackCount = 0;        }
+      });
+  }
+  
+  }
+
