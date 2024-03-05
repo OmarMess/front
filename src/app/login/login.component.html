@@ -18,14 +18,15 @@
 
 <main class="box">
   <h2>Login</h2>
+  <div *ngIf="error" class="error">{{ error }}</div>
   <form (ngSubmit)="login()">
     <div class="inputBox">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" placeholder="type your username" required/>
+      <label for="username">Email</label>
+      <input type="text" name="mail" id="mail" [(ngModel)]="mail" placeholder="type your email" required/>
     </div>
     <div class="inputBox">
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" placeholder="type your password" required/>
+    <input type="password" name="password" id="password" [(ngModel)]="password" placeholder="type your password" required/>
     </div>
     <div>
       <button type="submit" name="" style="float: left;">Submit</button>
