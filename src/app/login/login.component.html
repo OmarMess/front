@@ -1,0 +1,37 @@
+<!-- <div>
+    <h2>Login</h2>
+    <form (ngSubmit)="login()">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="username" required>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p><a routerLink="/forgot-password">Mot de passe oublié?</a></p>
+  </div> -->
+  
+<!-- <Particles id="tsparticles" [options]="particlesConfig"></Particles> -->
+
+<main class="box">
+  <h2>Login</h2>
+  <form (ngSubmit)="login()">
+    <div class="inputBox">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" placeholder="type your username" required/>
+    </div>
+    <div class="inputBox">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" placeholder="type your password" required/>
+    </div>
+    <div>
+      <button type="submit" name="" style="float: left;">Submit</button>
+      <p><a routerLink="/forgot-password" style="float: left;">Forgot Password?</a></p>
+    </div>
+  </form>
+</main>
+<footer>
+</footer>
