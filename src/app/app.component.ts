@@ -7,5 +7,13 @@ import { Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  // isAuth = false; //property binding
 
+  // constructor(){
+  //   setTimeout(
+  //     () => {
+  //       this.isAuth = true;
+  //     },4000
+  //   );
+  // }
 }

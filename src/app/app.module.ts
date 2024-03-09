@@ -13,6 +13,10 @@ import { MatInputModule } from '@angular/material/input';
 
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+
+import {InterviewService} from './Services/interview.service';
+
+
 @NgModule({
   imports: [
     MatInputModule,
@@ -35,7 +39,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     ForgotPasswordComponent,
 
   ],
-  providers: [],
+  providers: [
+    InterviewService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

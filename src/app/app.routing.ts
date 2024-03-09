@@ -9,13 +9,13 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes =[
-  {
-    path: '',
-    redirectTo: '/login',
-    pathMatch: 'full',
-  },
-  { path: 'login', component: LoginComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
+  // {
+  //   path: '',
+  //   redirectTo: '/login',
+  //   pathMatch: 'full',
+  // },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'forgot-password', component: ForgotPasswordComponent },
 
   {
     path: '',
