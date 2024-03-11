@@ -9,12 +9,12 @@ import { catchError } from 'rxjs/operators';
 })
 export class CandidatServiceService {
 
-  private baseUrl = 'http://localhost:4049/interview/candidat/profil';
+  private baseUrl = 'http://localhost:4049/interview/candidat/';
 
   constructor(private http: HttpClient) { }
 
-  getCandidatesByProfile(profil: string): Observable<Candidat[]> {
-    return this.http.get<Candidat[]>(`${this.baseUrl}/${profil}`).pipe(
+  getAllCandidates(): Observable<Candidat[]> {
+    return this.http.get<Candidat[]>(`${this.baseUrl}candidateslist`).pipe(
       catchError(error => {
         console.error('Une erreur est survenue:', error);
         return of([]); 
