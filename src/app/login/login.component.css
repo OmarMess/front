@@ -1,0 +1,81 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Main container */
+  .box {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form heading */
+  .box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  /* Form inputs */
+  .inputBox {
+    margin-bottom: 20px;
+  }
+  
+  .inputBox label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .inputBox input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  /* Form button */
+  .box button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .box button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Forgot password link */
+  .box p {
+    margin-top: 10px;
+  }
+  
+  .box a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .box a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Footer */
+  footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+  }
+  
