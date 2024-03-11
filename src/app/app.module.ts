@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   imports: [
     MatInputModule,
@@ -25,6 +26,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center' // Set position to top-center
+    }),
     
   ],
   declarations: [

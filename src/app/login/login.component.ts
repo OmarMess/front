@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'app/Services/login.service';
+import { IndividualConfig, ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -12,7 +13,8 @@ export class LoginComponent {
   mail: string = '';
   password: string = '';
   error : string = '';
-  constructor(private router: Router, private loginService : LoginService) {}
+  role : string = ''
+  constructor(private router: Router, private loginService : LoginService, private toastr: ToastrService) {}
 
   login() {
     
@@ -21,15 +23,41 @@ export class LoginComponent {
         // Handle successful login (e.g., store user info)
         console.log('Login successful', response);
         // Redirect or navigate to another page
-        this.router.navigate(['/dashboard']);
+        this.toastr.success('Login successful', 'Success');
+        switch (response.role){
+          case 'Manager':
+            this.router.navigate(['/dashboard']);
+            break;
+          case 'Evaluateur':
+            this.router.navigate(['/tablelist']);
+            break;
+          default:
+            this.router.navigate(['/default-dashboard']);
+
+        }
+
+        
+        
       },
       (error) => {
         console.error('Login failed', error);
         this.error = 'Invalid email or password.';
+        this.toastr.error('Invalid email or password.', 'Error');
+
       }
     );
     
   }
 
- 
+ // Customize Toastr options
+//  toastrOptions(): Partial<IndividualConfig> {
+//   return {
+//     timeOut: 3000,
+//     progressBar: true,
+//     closeButton: true,
+//     enableHtml: true,
+//     positionClass: 'toast-top-center',
+//     // Other options you may want to customize
+//   };
+// }
 }

@@ -7,6 +7,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TableListComponent } from './table-list/table-list.component';
 
 const routes: Routes =[
   {
@@ -25,7 +26,7 @@ const routes: Routes =[
       loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
     },
     { path: 'dashboard', component: DashboardComponent },
-
+    { path: 'tablelist', component: TableListComponent },
    
   ]
   }

@@ -13,4 +13,6 @@ export class LoginService {
   login(mail: string, password: string): Observable<any> {
     return this.http.post<any>(this.baseUrl, { mail, password });
   }
+
+ 
 }
