@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidatServiceService } from 'app/Services/candidat-service.service';
+import { Candidat } from 'app/models/candidat.model';
 import * as Chartist from 'chartist';
 
 @Component({
@@ -9,9 +10,26 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  
-
+  //fullstackCount : number=0;
+  candidats: Candidat[] = [];
+  fullstackCandidats: Candidat[] = [];
+  backendCandidats: Candidat[] = [];
+  frontendCandidats: Candidat[] = [];
+  javaCandidats: Candidat[] = [];
   constructor(private candidatService: CandidatServiceService) { }
+
+
+  getAllCandidates(): void {
+    this.candidatService.getAllCandidates()
+      .subscribe(candidates => {
+        this.fullstackCandidats = candidates.filter(c => c.profil.toString() === 'FULLSTUCK');
+        this.backendCandidats = candidates.filter(c => c.profil.toString() === 'BACKEND');
+        this.javaCandidats = candidates.filter(c => c.profil.toString() === 'JAVA');
+        this.frontendCandidats = candidates.filter(c => c.profil.toString() === 'FRONTEND');
+      });
+  }
+
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -68,7 +86,7 @@ export class DashboardComponent implements OnInit {
 
       seq2 = 0;
   };
-  fullstackCount : number=0;
+
   ngOnInit() {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
       
@@ -151,18 +169,21 @@ export class DashboardComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
 
-      this.getCandidatesCountByProfile();
+      this.getAllCandidates();
   }
 
-  getCandidatesCountByProfile(): void {
-    this.candidatService.getCandidatesByProfile('FULLSTACKrez')
+  /*getCandidatesCountByProfile(): void {
+    this.candidatService.getCandidatesByProfilez('FULLSTACK')
       .subscribe(candidates => {
         if (candidates) {
           this.fullstackCount = candidates.length;
         } else {
-          this.fullstackCount = 0;        }
+          this.fullstackCount = 0;       
+         }
       });
-  }
+  }*/
+
+ 
   
   }
 
