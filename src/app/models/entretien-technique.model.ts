@@ -6,7 +6,7 @@ import { Candidat} from "app/models/candidat.model";
 export class EntretienTechnique {
   id: number;
   title: string;
-  date_entretien_tec: string;
+  date_entretien_tec: Date;
   heure_entretien_tec: string;
   lien_reunion: string;
   motivation: string;
