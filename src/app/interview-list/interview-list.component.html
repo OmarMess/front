@@ -15,7 +15,7 @@
                                         Candidate
                                     </th>
                                     <th>
-                                        Candiate Profile
+                                        Candidate Profile
                                     </th>
                                     <th>
                                         Date
@@ -29,6 +29,29 @@
                                 </thead>
                                 <tbody>
                                     <!-- Table body will be dynamically populated -->
+                                      <tr *ngFor="let interview of interviews">
+                                        <td>{{ interview.candidat.name }}</td>
+                                        <td>{{ interview.candidat.profile }}</td>
+                                        <td>{{ interview.date_entretien_tec }} {{ interview.heure_entretien_tec }}</td>
+                                        <td>
+                                          <select [(ngModel)]="interview.statut_entretien" (change)="onStatusChange(interview)">
+                                            <option value="PLANNED">Planned</option>
+                                            <option value="EVALUATED">Evaluated</option>
+                                            <option value="REPORTED">Reported</option>
+                                            <option value="CANCELED">Canceled</option>
+                                          </select>
+                                          <div *ngIf="interview.statut_entretien === 'REPORTED'">
+                                            <input type="date" [(ngModel)]="reportedDate">
+                                            <input type="time" [(ngModel)]="reportedTime">
+                                            <button (click)="updateReportedDateTime(interview)">Save</button>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <button (click)="downloadReport(interview.rapportTech)">
+                                            <i class="fa fa-download"></i> Download Report
+                                          </button>
+                                        </td>
+                                      </tr>
                                 </tbody>
                             </table>
                         </div>
