@@ -30,16 +30,22 @@
                                 <tbody>
                                     <!-- Table body will be dynamically populated -->
                                       <tr *ngFor="let interview of interviews">
-                                        <td>{{ interview.candidat.name }}</td>
-                                        <td>{{ interview.candidat.profile }}</td>
+                                        <td>{{ interview.candidat.nom }} {{ interview.candidat.prenom }}</td>
+                                        <td>{{ interview.candidat.profil }}</td>
                                         <td>{{ interview.date_entretien_tec }} {{ interview.heure_entretien_tec }}</td>
                                         <td>
-                                          <select [(ngModel)]="interview.statut_entretien" (change)="onStatusChange(interview)">
-                                            <option value="PLANNED">Planned</option>
-                                            <option value="EVALUATED">Evaluated</option>
-                                            <option value="REPORTED">Reported</option>
-                                            <option value="CANCELED">Canceled</option>
-                                          </select>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    {{ interview.statutEntretien }}
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" (click)="changeStatus(interview, 'PLANNED')">Planned</a>
+                                                    <a class="dropdown-item" (click)="changeStatus(interview, 'EVALUATED')">Evaluated</a>
+                                                    <a class="dropdown-item" (click)="changeStatus(interview, 'REPORTED')">Reported</a>
+                                                    <a class="dropdown-item" (click)="changeStatus(interview, 'CANCELED')">Canceled</a>
+                                                </div>
+                                            </div>                                                                                    
                                           <div *ngIf="interview.statut_entretien === 'REPORTED'">
                                             <input type="date" [(ngModel)]="reportedDate">
                                             <input type="time" [(ngModel)]="reportedTime">
