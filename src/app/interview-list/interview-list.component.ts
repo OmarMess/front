@@ -19,26 +19,37 @@ export class InterviewListComponent implements OnInit {
 
 
   constructor(private interviewService:InterviewService) { }
-  
+
+   ngOnInit() {
+    this.getAllInterviews();
+  }
+
   getAllInterviews(): void {
     this.interviewService.getAllInterviews()
       .subscribe(interviews => {
-        this.plannedInterviews = interviews.filter(i => i.statut_entretien.toString() === 'Planned');
-        this.evaluatedInterviews = interviews.filter(i => i.statut_entretien.toString() === 'Evaluated');
-        this.reportedInterviews = interviews.filter(i => i.statut_entretien.toString() === 'Reported');
-        this.cancelledInterviews = this.interviews.filter(i => i.statut_entretien.toString() === 'Cancelled');
+        this.interviews = interviews; // Assign all interviews to the interviews array
+        console.log('component')
+        console.log(this.interviews);
+        this.plannedInterviews = interviews.filter(i => i.statutEntretien.toString() === 'Planned');
+        this.evaluatedInterviews = interviews.filter(i => i.statutEntretien.toString() === 'Evaluated');
+        this.reportedInterviews = interviews.filter(i => i.statutEntretien.toString() === 'Reported');
+        this.cancelledInterviews = interviews.filter(i => i.statutEntretien.toString() === 'Cancelled');
+
       });
-  }
-  ngOnInit() {
-    this.interviewService.getInterviewByStatus('PLANNED');
-  }
+  }  
+  
 
   downloadReport(reportUrl: string): void {
     window.open(reportUrl, '_blank');
   }
 
+  changeStatus(interview: any, newStatus: string) {
+    interview.statutEntretien = newStatus;
+    //updateInterviewStatus;
+  }
+
   onStatusChange(interview: EntretienTechnique): void {
-    this.interviewService.updateInterviewStatus(interview.id, interview.statut_entretien)
+    this.interviewService.updateInterviewStatus(interview.id, interview.statutEntretien)
       .subscribe(
         response => {
           console.log('Status updated successfully:', response);
