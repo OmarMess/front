@@ -18,38 +18,13 @@ export class LoginComponent {
 
   login() {
 
-    this.loginService.login(this.mail, this.password).subscribe({
-      next: (data: any) => {
-        // Handle successful login (e.g., store user info)
-        console.log('Login successful', data);
-    //     // Redirect or navigate to another page
-        this.toastr.success('Login successful', 'Success');
-        switch (data.role){
-          case 'Manager':
-            this.router.navigate(['/dashboard']);
-            break;
-          case 'Evaluateur':
-            this.router.navigate(['/tablelist']);
-            break;
-          default:
-            this.router.navigate(['/default-dashboard']);
-        }},
-
-        error: (err) => {
-          console.error('Login failed', err);
-          this.error = 'Invalid email or password.';
-          this.toastr.error('Invalid email or password.', 'Error');
-        }
-    });
-  
-    
-    // this.loginService.login(this.mail, this.password).subscribe(
-    //   (response) => {
+    // this.loginService.login(this.mail, this.password).subscribe({
+    //   next: (data: any) => {
     //     // Handle successful login (e.g., store user info)
-    //     console.log('Login successful', response);
-    //     // Redirect or navigate to another page
+    //     console.log('Login successful', data);
+    // //     // Redirect or navigate to another page
     //     this.toastr.success('Login successful', 'Success');
-    //     switch (response.role){
+    //     switch (data.role){
     //       case 'Manager':
     //         this.router.navigate(['/dashboard']);
     //         break;
@@ -58,19 +33,44 @@ export class LoginComponent {
     //         break;
     //       default:
     //         this.router.navigate(['/default-dashboard']);
+    //     }},
 
+    //     error: (err) => {
+    //       console.error('Login failed', err);
+    //       this.error = 'Invalid email or password.';
+    //       this.toastr.error('Invalid email or password.', 'Error');
     //     }
+    // });
+  
+    
+    this.loginService.login(this.mail, this.password).subscribe(
+      (response) => {
+        // Handle successful login (e.g., store user info)
+        console.log('Login successful', response);
+        // Redirect or navigate to another page
+        this.toastr.success('Login successful', 'Success');
+        switch (response.role){
+          case 'Manager':
+            this.router.navigate(['/dashboard']);
+            break;
+          case 'Evaluateur':
+            this.router.navigate(['/tablelist']);
+            break;
+          default:
+            this.router.navigate(['/default-dashboard']);
+
+        }
 
         
         
-    //   },
-    //   (error) => {
-    //     console.error('Login failed', error);
-    //     this.error = 'Invalid email or password.';
-    //     this.toastr.error('Invalid email or password.', 'Error');
+      },
+      (error) => {
+        console.error('Login failed', error);
+        this.error = 'Invalid email or password.';
+        this.toastr.error('Invalid email or password.', 'Error');
 
-    //   }
-    // );
+      }
+    );
     
   }
 
