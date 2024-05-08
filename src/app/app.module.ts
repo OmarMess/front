@@ -17,6 +17,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import {InterviewService} from './Services/interview.service';
 
 
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   imports: [
     MatInputModule,
@@ -29,6 +30,9 @@ import {InterviewService} from './Services/interview.service';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center' // Set position to top-center
+    }),
     
   ],
   declarations: [
