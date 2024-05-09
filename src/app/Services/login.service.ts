@@ -11,6 +11,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(mail: string, password: string): Observable<any> {
+
     // return this.http.post<any>(this.baseUrl, { mail, password });
     return this.http.post<any>(this.baseUrl, { mail, password }).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -24,6 +25,7 @@ export class LoginService {
       })
     );
   
+
   }
 
  

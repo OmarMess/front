@@ -1,0 +1,70 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">List of Interviews</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Candidate
+                                    </th>
+                                    <th>
+                                        Candidate Profile
+                                    </th>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Report
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <!-- Table body will be dynamically populated -->
+                                      <tr *ngFor="let interview of interviews">
+                                        <td>{{ interview.candidat.nom }} {{ interview.candidat.prenom }}</td>
+                                        <td>{{ interview.candidat.profil }}</td>
+                                        <td>{{ interview.date_entretien_tec }} {{ interview.heure_entretien_tec }}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    {{ interview.statutEntretien }}
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" (click)="changeStatus(interview, 'PLANNED')">Planned</a>
+                                                    <a class="dropdown-item" (click)="changeStatus(interview, 'EVALUATED')">Evaluated</a>
+                                                    <a class="dropdown-item" (click)="changeStatus(interview, 'REPORTED')">Reported</a>
+                                                    <a class="dropdown-item" (click)="changeStatus(interview, 'CANCELED')">Canceled</a>
+                                                </div>
+                                            </div>                                                                                    
+                                          <div *ngIf="interview.statut_entretien === 'REPORTED'">
+                                            <input type="date" [(ngModel)]="reportedDate">
+                                            <input type="time" [(ngModel)]="reportedTime">
+                                            <button (click)="updateReportedDateTime(interview)">Save</button>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <button (click)="downloadReport(interview.rapportTech)">
+                                            <i class="fa fa-download"></i> Download Report
+                                          </button>
+                                        </td>
+                                      </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
