@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TableListComponent } from './table-list/table-list.component';
 
+
 const routes: Routes =[
   {
     path: '',
