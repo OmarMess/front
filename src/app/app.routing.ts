@@ -7,8 +7,10 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { TableListComponent } from './table-list/table-list.component';
-
+// import { TableListComponent } from './table-list/table-list.component';
+import { InterviewListComponent } from './interview-list/interview-list.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { ManagerGuard } from './manager.guard';
 
 const routes: Routes =[
   {
@@ -16,18 +18,28 @@ const routes: Routes =[
     redirectTo: '/dashboard',
     pathMatch: 'full',
   },
+
+  {
+    path:'dashboard',
+    component: DashboardComponent,
+    redirectTo: '/dashboard',
+    canActivate: [ManagerGuard]
+  },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+
+  { path: 'interviewlist', component: InterviewListComponent },
+  { path: 'unauthorized', component: UnauthorizedComponent }, // Route for unauthorized page
+
   {
     path: '',
     component: AdminLayoutComponent,
-    children: [{
-      path: '',
-      loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
-    },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'tablelist', component: TableListComponent },
-   
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule),
+      },
+    
   ]
   }
 ];

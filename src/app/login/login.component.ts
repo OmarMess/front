@@ -26,10 +26,12 @@ export class LoginComponent {
         this.toastr.success('Login successful', 'Success');
         switch (response.role){
           case 'Manager':
+            localStorage.setItem("connectedProfil",response.role)
             this.router.navigate(['/dashboard']);
             break;
           case 'Evaluateur':
-            this.router.navigate(['/tablelist']);
+            localStorage.setItem("connectedProfil",response.role)
+            this.router.navigate(['/interview-list']);
             break;
           default:
             this.router.navigate(['/default-dashboard']);

@@ -14,10 +14,14 @@ export class AdminLayoutComponent implements OnInit {
   private _router: Subscription;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
-
+profil : string =null;
   constructor( public location: Location, private router: Router) {}
 
   ngOnInit() {
+    console.log("je suis dans admin-layout");
+    
+    console.log("profil dans admin layout==",localStorage.getItem("connectedProfil"))
+    this.profil=localStorage.getItem("connectedProfil");
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
       if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
