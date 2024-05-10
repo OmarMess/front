@@ -88,6 +88,8 @@ export class DashboardComponent implements OnInit {
   };
 
   ngOnInit() {
+    console.log("je suis dans dashboard");
+    console.log("profil dans dashboard==",localStorage.getItem("connectedProfil"))
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
       
       

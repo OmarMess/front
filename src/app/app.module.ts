@@ -18,6 +18,7 @@ import {InterviewService} from './Services/interview.service';
 
 
 import { ToastrModule } from 'ngx-toastr';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 @NgModule({
   imports: [
     MatInputModule,
@@ -41,6 +42,7 @@ import { ToastrModule } from 'ngx-toastr';
     
     LoginComponent,
     ForgotPasswordComponent,
+    UnauthorizedComponent,
 
   ],
   providers: [

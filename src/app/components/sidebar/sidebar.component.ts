@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -22,14 +22,65 @@ export const ROUTES: RouteInfo[] = [
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit,OnChanges {
   menuItems: any[];
-
+@Input() profil;
   constructor() { }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("ngOnchanges sideBar",this.profil)
+    
+      if(this.profil==="Manager"){
+        this.menuItems = this.menuItems.filter(route => 
+          
+          route.title =='Dashboard' 
+          || route.title =='User Profile' 
+          || route.title =='Interview List'
+          || route.title =='Notifications'
+        )
+        console.log("menu items==",this.menuItems)
+      }
+
+      if(this.profil==="Evaluateur"){
+        this.menuItems = this.menuItems.filter(route => 
+            
+            route.title =='User Profile' 
+          || route.title =='Interview List'
+          || route.title =='Notifications'
+        )
+  
+      }
+console.log("profil dans sidebar",this.profil);
+    
+  }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    console.log("ngOnInit sideBar",this.profil)
+    console.log("menu items1==",this.menuItems)
+    if(this.profil==="Manager"){
+      this.menuItems = this.menuItems.filter(route => 
+          
+        route.title =='Dashboard' 
+        || route.title =='User Profile' 
+        || route.title =='Interview List'
+        || route.title =='Notifications'
+      )
+    }
+    if(this.profil==="Evaluateur"){
+      this.menuItems = this.menuItems.filter(route => 
+          
+          route.title =='User Profile' 
+        || route.title =='Interview List'
+        || route.title =='Notifications'
+      )
+
+    }
+      // console.log("menu items==",this.menuItems)
+    
+   
   }
+
+
   isMobileMenu() {
       if ($(window).width() > 991) {
           return false;
