@@ -1,7 +1,7 @@
 export enum Profil {
-    JAVA = 'Java',
+    JAVA = 'JAVA',
     PHP = 'PHP',
-    FULLSTACK = 'Fullstack',
-    BACKEND = 'Backend',
-    FRONTEND = 'Frontend'
+    FULLSTACK = 'FULLSTACK',
+    BACKEND = 'BACKEND',
+    FRONTEND = 'FRONTEND'
 }

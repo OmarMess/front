@@ -18,7 +18,15 @@ import {InterviewService} from './Services/interview.service';
 
 
 import { ToastrModule } from 'ngx-toastr';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { LoginService } from './Services/login.service';
+import { ScheduleFormComponent } from './schedule-form/schedule-form.component';
+import { NotifComponent } from './notif/notif.component';
+import { ScheduleListComponent } from './schedulelist/schedulelist.component';
+import { ProfilUserComponent } from './profil-user/profil-user.component';
+import { EvaluationFormComponent } from './evaluation-form/evaluation-form.component';
+import { EvaluationListComponent } from './evaluation-list/evaluation-list.component';
+
+//import { UnauthorizedComponent } from './unauthorized/Unauthorized.component';
 @NgModule({
   imports: [
     MatInputModule,
@@ -39,14 +47,18 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    
     LoginComponent,
     ForgotPasswordComponent,
-    UnauthorizedComponent,
-
+    ScheduleFormComponent,
+    NotifComponent,
+    ScheduleListComponent,
+    ProfilUserComponent,
+    EvaluationFormComponent,
+    EvaluationListComponent,
+    //UnauthorizedComponent,
   ],
   providers: [
-    InterviewService
+    InterviewService,
   ],
   bootstrap: [AppComponent]
 })

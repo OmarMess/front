@@ -1,0 +1,193 @@
+<div class="container mt-5"> <!-- Added top margin to the container -->
+  <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit()">
+    <!-- Candidate and Evaluator Information Cards -->
+    <div class="row mb-3"> <!-- Added margin-bottom for spacing -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-danger font-weight-bold"> <!-- Red header, bold text -->
+            <h4 class="card-title text-white">Candidate Information</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="candidateNom">Nom</label>
+              <input id="candidateNom" formControlName="candidateNom" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="candidatePrenom">Prénom</label>
+              <input id="candidatePrenom" formControlName="candidatePrenom" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="candidateEmail">Email</label>
+              <input id="candidateEmail" formControlName="candidateEmail" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-danger font-weight-bold"> <!-- Red header, bold text -->
+            <h4 class="card-title text-white">Evaluator Information</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="evaluatorNom">Nom</label>
+              <input id="evaluatorNom" formControlName="evaluatorNom" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="evaluatorPrenom">Prénom</label>
+              <input id="evaluatorPrenom" formControlName="evaluatorPrenom" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="evaluatorEmail">Email</label>
+              <input id="evaluatorEmail" formControlName="evaluatorEmail" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diplômes et Formation and Compétences Techniques Cards -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-danger font-weight-bold"> <!-- Red header, bold text -->
+            <h4 class="card-title text-white ">Diplômes et Formation</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="niveauEtudes">Niveau d'études</label>
+              <select id="niveauEtudes" formControlName="niveauEtudes" class="form-control">
+                <option *ngFor="let option of niveauEtudesOptions" [value]="option">{{ option }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="annee">Année</label>
+              <input id="annee" formControlName="annee" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="intitule">Intitulé</label>
+              <input id="intitule" formControlName="intitule" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="specialite">Spécialité</label>
+              <input id="specialite" formControlName="specialite" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-danger font-weight-bold"> <!-- Red header, bold text -->
+            <h4 class="card-title text-white">Compétences Techniques</h4>
+          </div>
+          <div class="card-body">
+            <div formArrayName="competences">
+              <div *ngFor="let competence of competences.controls; let i = index" [formGroupName]="i">
+                <div class="form-group">
+                  <label for="competenceTechnologie">Technologie</label>
+                  <input id="competenceTechnologie" formControlName="technologie" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="competenceNiveau">Niveau</label>
+                  <select id="competenceNiveau" formControlName="niveau" class="form-control">
+                    <option *ngFor="let option of niveauxOptions" [value]="option">{{ option }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button type="button" (click)="addCompetence()" class="btn btn-primary">Add Competence</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profil and Experience Cards -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-danger font-weight-bold"> <!-- Red header, bold text -->
+            <h4 class="card-title text-white">Profil</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="profil">Profil</label>
+              <select id="profil" formControlName="profil" class="form-control">
+                <option *ngFor="let option of profilsOptions" [value]="option">{{ option }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-danger font-weight-bold"> <!-- Red header, bold text -->
+            <h4 class="card-title text-white">Expérience</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="experience">Expérience</label>
+              <input id="experience" formControlName="experience" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Avis, Notes / Commentaires, and State Cards -->
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header bg-danger font-weight-bold"> <!-- Red header, bold text -->
+            <h4 class="card-title text-white">Avis</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="avis">Avis</label>
+              <select id="avis" formControlName="avis" class="form-control">
+                <option *ngFor="let option of avisOptions" [value]="option">{{ option }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header bg-danger font-weight-bold"> <!-- Red header, bold text -->
+            <h4 class="card-title text-white">Notes / Commentaires</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="notes">Notes / Commentaires</label>
+              <textarea id="notes" formControlName="notes" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header bg-danger font-weight-bold"> <!-- Red header, bold text -->
+            <h4 class="card-title text-white">State</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="state">State</label>
+              <select id="state" formControlName="state" class="form-control">
+                <option *ngFor="let option of statesOptions" [value]="option">{{ option }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-danger btn-lg">Submit</button> <!-- Red button, centered -->
+    </div>
+  </form>
+</div>

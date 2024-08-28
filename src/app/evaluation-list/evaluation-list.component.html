@@ -1,0 +1,51 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Liste des Evaluations</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th scope="col">Candidate Name</th>
+                                        <th scope="col">Candidat Email</th>
+                                        <th scope="col">Evaluator Name</th>
+                                        <th scope="col">Profil</th>
+                                        <th scope="col">Avis</th>
+                                        <th scope="col">Statut</th>
+                                        <th scope="col">Report</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let evaluation of evaluations">
+                                        <td>{{ evaluation.candidatePrenom }} {{ evaluation.candidateNom }}</td>
+                                        <td>{{ evaluation.candidateEmail }}</td>
+                                        <td>{{ evaluation.evaluatorPrenom }} {{ evaluation.evaluatorNom }}</td>
+                                        <td>{{ evaluation.profil }}</td>
+                                        <td>{{ evaluation.avis }}</td>
+                                        <td>{{ evaluation.state }}</td>
+                                        <td>
+                                            <button class="btn btn-primary" (click)="downloadReport(evaluation.id)">
+                                                Download Report
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div *ngIf="evaluations.length === 0">
+                            <p>No evaluations available.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

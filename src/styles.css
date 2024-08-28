@@ -2,3 +2,32 @@
 .toast-top-center {
     margin: 10px auto !important; /* Adjust margin as needed */
   }
+
+
+@import '~@angular/material/theming';
+
+// Define your custom primary and accent colors here
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink);
+
+$theme: mat-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: mat-palette($mat-red),
+  ),
+  typography: mat-typography-config(),
+));
+
+@include mat-core();
+@include angular-material-theme($theme);
+
+// Custom styles for form fields
+.mat-form-field {
+  .mat-form-field-label {
+    color: rgba(255, 255, 255, 0.7); // Adjust label color
+  }
+  .mat-input-element::placeholder {
+    color: rgba(255, 255, 255, 0.5); // Adjust placeholder color
+  }
+}

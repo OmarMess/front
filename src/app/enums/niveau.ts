@@ -1,2 +1,7 @@
 export enum Niveau {
+    DEBUTANT = 'DEBUTANT',
+    PRATIQUE = 'PRATIQUE',
+    AUTONOME = 'AUTONOME',
+    CONFIRME = 'CONFIRME',
+    EXPERT = 'EXPERT'
 }

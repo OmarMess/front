@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CandidatServiceService } from 'app/Services/candidat-service.service';
+import { EvaluationService } from 'app/Services/evaluation.service';
 import { Candidat } from 'app/models/candidat.model';
 import * as Chartist from 'chartist';
 
@@ -10,13 +11,21 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  //fullstackCount : number=0;
+  fullstackCount: number = 0;
+  backendCount: number = 0;
+  frontendCount: number = 0;
+  javaCount: number = 0;
+  phpCount: number = 0;
+
+  successCount: number = 0;
+  failedCount: number = 0;
+
   candidats: Candidat[] = [];
   fullstackCandidats: Candidat[] = [];
   backendCandidats: Candidat[] = [];
   frontendCandidats: Candidat[] = [];
   javaCandidats: Candidat[] = [];
-  constructor(private candidatService: CandidatServiceService) { }
+  constructor(private candidatService: CandidatServiceService , private evaluationService: EvaluationService) { }
 
 
   getAllCandidates(): void {
@@ -88,6 +97,20 @@ export class DashboardComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.evaluationService.getProfileCounts().subscribe(counts => {
+      this.fullstackCount = counts['FULLSTACK'];
+      this.backendCount = counts['BACKEND'];
+      this.frontendCount = counts['FRONTEND'];
+      this.javaCount = counts['JAVA'];
+      this.phpCount = counts['PHP'];
+    });
+
+    this.evaluationService.getStateCounts().subscribe(counts => {
+      this.successCount = counts['SUCCESS'];
+      this.failedCount = counts['FAILED'];
+    });
+
+    
     console.log("je suis dans dashboard");
     console.log("profil dans dashboard==",localStorage.getItem("connectedProfil"))
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */

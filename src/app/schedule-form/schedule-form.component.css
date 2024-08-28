@@ -1,0 +1,48 @@
+.main-content {
+  padding: 20px;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.card-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-header-danger {
+  background-color: red;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: red;
+  border: none;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 0 auto;
+  width: 40%;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.mt-5 {
+  margin-top: 3rem;
+}
+
+.form-group label {
+  color: red;
+  font-weight: bold;
+}

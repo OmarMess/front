@@ -31,7 +31,7 @@ export class LoginComponent {
             break;
           case 'Evaluateur':
             localStorage.setItem("connectedProfil",response.role)
-            this.router.navigate(['/interview-list']);
+            this.router.navigate(['/schedulelist']);
             break;
           default:
             this.router.navigate(['/default-dashboard']);

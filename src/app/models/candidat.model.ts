@@ -17,6 +17,5 @@ export class Candidat {
     compManag: string;
     nivFranc: NiveauLangue;
     nivAng: NiveauLangue;
-    profil: Profil;
-    
+    profil: Profil;  
 }

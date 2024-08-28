@@ -9,12 +9,14 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
+    { path: '/schedule-interview', title: 'Schedule an interview',  icon:'person', class: '' },
     { path: '/interview-list', title: 'Interview List',  icon:'content_paste', class: '' },
     { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
+    { path: '/schedulelist', title: 'Schedule List',  icon:'library_books', class: '' },
     { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
     { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
     { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
+    { path: '/evaluations', title: 'Evaluations List',  icon:'notifications', class: '' },
 ];
 
 @Component({
@@ -28,14 +30,15 @@ export class SidebarComponent implements OnInit,OnChanges {
   constructor() { }
   ngOnChanges(changes: SimpleChanges): void {
     console.log("ngOnchanges sideBar",this.profil)
-    
+
       if(this.profil==="Manager"){
         this.menuItems = this.menuItems.filter(route => 
           
           route.title =='Dashboard' 
-          || route.title =='User Profile' 
-          || route.title =='Interview List'
-          || route.title =='Notifications'
+          || route.title =='Schedule an interview' 
+          || route.title =='Schedule List'
+          || route.title =='Evaluations List'
+          
         )
         console.log("menu items==",this.menuItems)
       }
@@ -43,15 +46,17 @@ export class SidebarComponent implements OnInit,OnChanges {
       if(this.profil==="Evaluateur"){
         this.menuItems = this.menuItems.filter(route => 
             
-            route.title =='User Profile' 
-          || route.title =='Interview List'
-          || route.title =='Notifications'
+
+           
+          route.title =='Schedule List'
+          || route.title =='Evaluations List'
         )
   
       }
 console.log("profil dans sidebar",this.profil);
-    
   }
+
+
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
@@ -61,24 +66,23 @@ console.log("profil dans sidebar",this.profil);
       this.menuItems = this.menuItems.filter(route => 
           
         route.title =='Dashboard' 
-        || route.title =='User Profile' 
-        || route.title =='Interview List'
-        || route.title =='Notifications'
+        || route.title =='Schedule an interview' 
+        || route.title =='Schedule List'
+        || route.title =='Evaluations List'
       )
     }
     if(this.profil==="Evaluateur"){
       this.menuItems = this.menuItems.filter(route => 
           
-          route.title =='User Profile' 
-        || route.title =='Interview List'
-        || route.title =='Notifications'
+          
+        route.title =='Schedule List'
+        || route.title =='Evaluations List'
       )
 
     }
-      // console.log("menu items==",this.menuItems)
-    
-   
+      // console.log("menu items==",this.menuItems) 
   }
+
 
 
   isMobileMenu() {

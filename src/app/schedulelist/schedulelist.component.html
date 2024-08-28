@@ -1,0 +1,63 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Liste des Planifications</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th scope="col">Candidat Nom</th>
+                                        <th scope="col">Candidat Prenom</th>
+                                        <th scope="col">Candidat Email</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Evaluateur</th>
+                                        <th scope="col">Lien de reunion</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let schedule of schedules">
+                                        <td>{{ schedule.nom }}</td>
+                                        <td>{{ schedule.prenom }}</td>
+                                        <td>{{ schedule.email }}</td>
+                                        <td>{{ schedule.date | date: 'shortDate' }}</td>
+                                        <td>{{ schedule.evaluator.nom }} {{ schedule.evaluator.prenom }}</td>
+                                        <td><a [href]="schedule.meetinglink" target="_blank">{{ schedule.meetinglink }}</a></td>
+
+                                        <td>
+                                            <ng-container *ngIf="!isManager">
+                                                <button 
+                                                    class="btn btn-primary btn-block" 
+                                                    (click)="evaluate(schedule.id)"
+                                                    [disabled]="schedule.evaluated">
+                                                    {{ schedule.evaluated ? 'Evaluated' : 'Evaluate' }}
+                                                </button>
+                                            </ng-container>
+                                            <ng-container *ngIf="isManager">
+                                                <span><b>
+                                                    {{ schedule.evaluated ? 'Evaluated' : 'Pending' }}</b>
+                                                </span>
+                                            </ng-container>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div *ngIf="schedules.length === 0">
+                            <p>No schedules available.</p>
+                        </div>
+                        <div *ngIf="errorMessage">
+                            <p class="text-danger">{{ errorMessage }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
